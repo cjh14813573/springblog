@@ -72,6 +72,7 @@ public class BlogService {
         }
 
         blog.setTitle(blogForm.getTitle());
+        blog.setBrief(blogForm.getBrief());
         blog.setContent(blogForm.getContent());
         blog.setCategory(optionalCategory.get());
         blog.setTagList(tagList);
@@ -107,6 +108,7 @@ public class BlogService {
         Blog blog = optionalBlog.get();
 
         blog.setTitle(blogForm.getTitle());
+        blog.setBrief(blogForm.getBrief());
         blog.setContent(blogForm.getContent());
         blog.setCategory(optionalCategory.get());
         blog.setTagList(tagList);

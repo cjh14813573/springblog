@@ -12,10 +12,10 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-8">
-                    <h1 class="my-3">test</h1>
-                    <div th:each="blog : ${blogs}" th:object="${blog}">
+                    <h1 class="my-3" th:text="'Category: ' + ${category.name}"> </h1>
+                    <div th:each="blog : ${category.blogList}" th:object="${blog}">
                         <div class="card my-4">
-                            <img src="https://picsum.photos/seed/12/500/160" class="card-img-top" alt="">
+                            <img src="https://picsum.photos/500/200" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h4 class="card-title" th:text="*{title}"></h4>
                                 <p class="card-text" th:utext="*{brief}"></p>

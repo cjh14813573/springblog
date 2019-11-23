@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+    <nav th:replace="/fragments/nav"></nav>
+
+    <main role="main">
+
+
+        <div class="container mt-4">
+            <div th:utext="${page.content}"></div>
+        </div>
+
+        </div>
+
+    </main>
+    <footer th:replace="/fragments/footer"></footer>
+</body>
+
+</html>

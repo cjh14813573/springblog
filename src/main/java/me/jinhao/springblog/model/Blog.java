@@ -27,6 +27,9 @@ public class Blog {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String brief;
+
     @Column(columnDefinition = "TEXT")
     private String content;
 

@@ -26,8 +26,8 @@
                     <tr th:each="blog: ${blogs}" th:id="'id_' + ${blog.id}">
                         <td th:text="${blog.title}"></td>
                         <td th:text="${blog.createdTime}"></td>
-                        <td><a th:href="@{'/admin/blogs/edit/'+${blog.id}}">Edit</a></td>
-                        <td><a th:href="@{'/admin/blogs/delete/'+${blog.id}}" class="confirmDeletion">Delete</a></td>
+                        <td><a th:href="@{'/admin/blog/edit/'+${blog.id}}">Edit</a></td>
+                        <td><a th:href="@{'/admin/blog/delete/'+${blog.id}}" class="confirmDeletion">Delete</a></td>
                     </tr>
                 </table>
             </div>

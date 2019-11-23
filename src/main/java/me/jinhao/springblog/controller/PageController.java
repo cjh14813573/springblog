@@ -17,9 +17,9 @@ public class PageController {
     @Autowired
     private PageService pageService;
 
-    @GetMapping("/{slug}")
-    public String page(@PathVariable String slug,Model model){
-        Page page = pageService.findPageBySlug(slug);
+    @GetMapping("/{id}")
+    public String page(@PathVariable Integer id,Model model){
+        Page page = pageService.findPageById(id);
         if(page == null){
             return "redirect:/";
         }else{

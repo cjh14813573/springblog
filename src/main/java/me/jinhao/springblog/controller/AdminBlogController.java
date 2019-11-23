@@ -72,7 +72,7 @@ public class AdminBlogController {
         redirectAttributes.addFlashAttribute("message", "Product added");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
-        return "redirect:/admin/blogs";
+        return "redirect:/admin/blog";
     }
 
     @GetMapping("/edit/{id}")
@@ -85,7 +85,7 @@ public class AdminBlogController {
         } catch (BlogNotFoundException e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
-            return "redirect:/admin/blogs";
+            return "redirect:/admin/blog";
         }
         return "/admin/blog/edit";
     }
@@ -116,7 +116,7 @@ public class AdminBlogController {
         redirectAttributes.addFlashAttribute("message", "Blog edited");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
-        return "redirect:/admin/blogs";
+        return "redirect:/admin/blog";
     }
 
     @GetMapping("/delete/{id}")
@@ -131,7 +131,7 @@ public class AdminBlogController {
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
         }
 
-        return "redirect:/admin/blogs";
+        return "redirect:/admin/blog";
     }
 
 }

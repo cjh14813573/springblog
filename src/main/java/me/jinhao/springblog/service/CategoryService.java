@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import me.jinhao.springblog.exception.CategoryNotFoundException;
+import me.jinhao.springblog.model.Blog;
+import me.jinhao.springblog.model.BlogRepository;
 import me.jinhao.springblog.model.Category;
 import me.jinhao.springblog.model.CategoryRepository;
 
@@ -15,6 +17,9 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	@Autowired
+	private BlogRepository blogRepository;
 
 	public List<Category> findAllCategories() {
 		return categoryRepository.findAll();
@@ -50,6 +55,16 @@ public class CategoryService {
 	public void deleteCategoryById(Integer id) {
 		if (!categoryRepository.existsById(id)) {
 			throw new CategoryNotFoundException("category does not exist");
+		}
+		if(id == 1){
+			throw new CategoryNotFoundException("you cannot delete the default category");
+		}
+		Category defaultCategory = categoryRepository.getOne(1);
+		Category category = categoryRepository.getOne(id);
+		List<Blog> blogs = category.getBlogList();
+		for(Blog blog : blogs){
+			blog.setCategory(defaultCategory);
+			blogRepository.save(blog);
 		}
 		categoryRepository.deleteById(id);
 	}

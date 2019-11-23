@@ -93,7 +93,7 @@ public class AdminCategoryController {
             redirectAttributes.addFlashAttribute("message","category deleted");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");
         } catch (CategoryNotFoundException e) {
-            redirectAttributes.addFlashAttribute("message","category does not exist");
+            redirectAttributes.addFlashAttribute("message",e.getMessage());
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
         }
 
