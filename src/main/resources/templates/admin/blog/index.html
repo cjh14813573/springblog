@@ -25,7 +25,7 @@
                     </tr>
                     <tr th:each="blog: ${blogs}" th:id="'id_' + ${blog.id}">
                         <td th:text="${blog.title}"></td>
-                        <td th:text="${blog.createdTime}"></td>
+                        <td th:text="${#dates.format(blog.createdTime, 'yyyy-MM-dd HH:mm')}"></td>
                         <td><a th:href="@{'/admin/blog/edit/'+${blog.id}}">Edit</a></td>
                         <td><a th:href="@{'/admin/blog/delete/'+${blog.id}}" class="confirmDeletion">Delete</a></td>
                     </tr>

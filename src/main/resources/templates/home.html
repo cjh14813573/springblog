@@ -15,15 +15,14 @@
                     <h1 class="my-3">test</h1>
                     <div th:each="blog : ${blogs}" th:object="${blog}">
                         <div class="card my-4">
-                            <img src="https://picsum.photos/seed/12/500/160" class="card-img-top" alt="">
+                            <img src="https://picsum.photos/500/160" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h4 class="card-title" th:text="*{title}"></h4>
                                 <p class="card-text" th:utext="*{brief}"></p>
                                 <a th:href="@{'/blog/' + *{id}}" class="btn btn-primary">Read More</a>
                             </div>
                             <div class="card-footer">
-                                <span class="mr-2" th:text="'Posted on ' + *{createdTime}">
-                                    Posted on January 1, 2017</span>
+                                <span class="mr-2" th:text="'Posted on ' + ${#dates.format(blog.createdTime, 'yyyy-MM-dd HH:mm')}"></span>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Tag1</button>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Tag2</button>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Tag3</button>
