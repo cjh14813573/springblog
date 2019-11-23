@@ -1,0 +1,42 @@
+<div class="col-md-4" th:fragment="widgets">
+    <div class="card mb-4 c-mt-8">
+        <!-- /About -->
+        <div class="c-card-avatar-container">
+            <div class="c-card-avatar">
+                <img src="https://picsum.photos/180/180" alt="">
+            </div>
+        </div>
+        <div class="card-body">
+            testtesttest
+        </div>
+    </div>
+    <div class="card my-4">
+        <!-- /Category -->
+        <div class="card-header">Categories</div>
+        <div class="body">
+            <div class="list-group">
+                <a href="#"  th:each="category : ${wCategories}" class="list-group-item list-group-item-action" th:text="${category.name}" th:href="@{'/category/' + ${category.id}}">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card my-4">
+        <!-- /Tag -->
+        <div class="card-header">Tags</div>
+        <div class="card-body">
+            <button type="button"  th:each="tag : ${wTags}" class="btn btn-sm btn-outline-primary mb-2 mx-1" th:text="${tag.name}" th:href="@{'/tag/' + ${tag.id}}"></button>
+        </div>
+    </div>
+    <div class="card my-4">
+        <!-- /search -->
+        <div class="card-header">Search</div>
+        <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button">Go!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
