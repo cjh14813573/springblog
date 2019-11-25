@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://172.17.0.1:13306/springblog
+    url: jdbc:mysql://www.jinhao.me:13306/springblog
     username: root
     password: root
   jpa:
