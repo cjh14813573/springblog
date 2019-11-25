@@ -41,6 +41,9 @@ public class PageService {
         String slug = title.trim().toLowerCase().replace(" ", "-");
         page.setSlug(slug);
         page.setIsActive(true);
+        if(page.getIsLink() == null){
+            page.setIsLink(false);
+        }
         pageRepository.save(page);
 	}
 

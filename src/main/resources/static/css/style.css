@@ -33,7 +33,15 @@
     height: 200px;
 }
 
-.c-switch-div {
+.c-switch-table-div {
     width: 50px;
     margin: auto;
+}
+
+body {
+    background-image: url("https://assets.awwwards.com/awards/images/2015/04/pattern.jpg");
+}
+
+.c-inline {
+    display: inline !important;
 }

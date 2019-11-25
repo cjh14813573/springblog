@@ -21,15 +21,36 @@
                         There are errors
                 </div>
                 <div class="form-group">
-                    <label for="">Title</label>
+                    <h5>Title</h5>
                     <input type="text" class="form-control" th:field="*{title}" placeholder="Title">
                     <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                 </div>
-                <div class="form-group">
-                    <label for="">Content</label>
+
+                
+                <div class="form-group my-4">
+                    <h5 class="d-inline mr-3">Use local content or external link</h5>
+                    <div class="custom-control custom-switch d-inline">
+                        <input type="checkbox" class="custom-control-input"
+                            id="customSwitch" th:attr="'checked' = *{isLink}">
+                        <label class="custom-control-label" for="customSwitch" th:text="*{isLink}?'link':'local'">local</label>
+                        <input type="hidden" th:field="*{isLink}">
+                    </div>
+                </div>
+
+                
+
+                <div class="form-group" id="content-div" th:classappend=" *{isLink} ? 'd-none' : '' ">
+                    <h5>Content</h5>
                     <textarea rows="10" class="form-control" th:field="*{content}" placeholder="content"></textarea>
                     <span class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
                 </div>
+
+                <div class="form-group" id="link-div" th:classappend=" *{isLink} ? '' : 'd-none' ">
+                    <h5>Link</h5>
+                    <input type="text" class="form-control" th:field="*{link}" placeholder="Link address">
+                    <span class="text-danger" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></span>
+                </div>
+
                 
                 <button class="btn btn-danger mb-5">Add</button>
             </form>
@@ -37,6 +58,24 @@
 
     </main>
     <footer th:replace="/fragments/footer"></footer>
+    <script>
+
+        let switchInput = $("input.custom-control-input");
+        switchInput.change(function (e) {
+            if (switchInput.prop("checked")) {
+                switchInput.next().text("link");
+                $("#content-div").addClass("d-none");
+                $("#link-div").removeClass("d-none");
+                $("#isLink").val(true);
+            } else {
+                switchInput.next().text("local");
+                $("#content-div").removeClass("d-none");
+                $("#link-div").addClass("d-none");
+                $("#isLink").val(false);
+            }
+        });
+
+    </script>
 </body>
 
 </html>

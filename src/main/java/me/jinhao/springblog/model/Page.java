@@ -26,7 +26,12 @@ public class Page {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "is_active")
+    @Column(nullable = false)
+    private Boolean isLink;
+
+    private String link;
+
+    @Column(nullable = false)
     private Boolean isActive;
     
 }
