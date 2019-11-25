@@ -23,6 +23,7 @@ class DemoApplicationTests {
 	void contextLoads() {
 	}
 
+	/*
 	@Test
 	void addBlog(){
 		Category category = new Category();
@@ -37,5 +38,6 @@ class DemoApplicationTests {
 		blog.setContent("testtesttest");
 		blogService.addBlog(blog);
 	}
+	*/
 
 }
