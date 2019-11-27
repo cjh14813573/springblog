@@ -1,6 +1,6 @@
  # Spring Blog
 Spring Blog is a lightweight blog system implemented with Spring Boot.
-Check the test site for demo online: [http://www.jinhao.me:8080](http://www.jinhao.me:8080)
+Check the test site (running in docker) for demo online: [http://www.jinhao.me:8080](http://www.jinhao.me:8080).
 
 ## development
 This project is still under development and has no stable release.
