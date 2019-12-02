@@ -27,7 +27,6 @@ public class Comment {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String website;
 
     @Column(nullable = false)

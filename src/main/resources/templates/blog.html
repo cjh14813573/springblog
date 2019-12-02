@@ -20,13 +20,37 @@
                     <hr>
                     <div th:utext="${blog.content}">blog content</div>
                     <hr>
+                    <div class="c-comment-form">
+                        <div class="card my-4">
+                            <h5 class="card-header">Leave a Comment:</h5>
+                            <div class="card-body">
+                              <form method="POST" th:action="@{/comment/add}" th:object="${commentForm}">
+                                <div class="form-group">
+                                    <input class="form-control mb-2" type="text" placeholder="name*" th:field="*{name}">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control mb-2" type="email" placeholder="email*" th:field="*{email}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control mb-2" type="text" placeholder="website" th:field="*{website}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <textarea class="form-control" rows="3" th:field="*{content}" placeholder="content*"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="media mb-4" th:each="comment:${blog.commentList}">
                         <img class="d-flex mr-3 rounded-circle c_avatar" src="https://picsum.photos/50/50" alt="" th:attr="email = ${comment.email}">
                         <div class="media-body">
-                          <h5 class="mt-0"><a th:text="${comment.name}" th:href="${comment.website}">Commenter Name</a></h5>
+                          <h5 class="mt-0"><a th:text="${comment.name}" th:href="${comment.website}?${comment.website}:'#'">Commenter Name</a></h5>
                           <p th:text="${comment.content}">comment content</p>
                         </div>
-                      </div>
+                    </div>
 
                     <hr>
                 </div>
@@ -39,12 +63,12 @@
     <footer th:replace="/fragments/footer"></footer>
     <script th:src="@{/js/md5.js}"></script>
     <script>
-    $(function(){
+        $(function () {
 
-        $("img.c_avatar").each(function(){
-            $(this).attr("src","https://www.gravatar.com/avatar/" + md5($(this).attr("email")) + "?s=50&d=identicon");
+            $("img.c_avatar").each(function () {
+                $(this).attr("src", "https://www.gravatar.com/avatar/" + md5($(this).attr("email")) + "?s=50&d=identicon");
+            });
         });
-    });
     </script>
 </body>
 
