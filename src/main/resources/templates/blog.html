@@ -12,39 +12,21 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-8 col-md-8">
-                    <h1 class="mt-4">Title</h1>
+                    <h1 class="mt-4" th:text="${blog.title}">Title</h1>
                     <hr>
-                    <p>Posted on January 1, 2019 at 12:00 PM</p>
+                    <p th:text="'Posted on ' + ${#dates.format(blog.createdTime, 'yyyy-MM-dd HH:mm')}"> post time</p>
                     <hr>
                     <img class="img-fluid rounded" src="https://picsum.photos/900/300" alt="">
                     <hr>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati,
-                        aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni
-                        recusandae laborum minus inventore?</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum
-                        quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat.
-                        Temporibus, voluptatibus.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto
-                        blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione
-                        repellat perspiciatis. Enim, iure!</p>
-
-                    <blockquote class="blockquote">
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
-                            ante.</p>
-                        <footer class="blockquote-footer">Someone famous in
-                            <cite title="Source Title">Source Title</cite>
-                        </footer>
-                    </blockquote>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas
-                        placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem
-                        obcaecati?</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo,
-                        aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam
-                        recusandae? Qui, necessitatibus, est!</p>
+                    <div th:utext="${blog.content}">blog content</div>
+                    <hr>
+                    <div class="media mb-4" th:each="comment:${blog.commentList}">
+                        <img class="d-flex mr-3 rounded-circle c_avatar" src="https://picsum.photos/50/50" alt="" th:attr="email = ${comment.email}">
+                        <div class="media-body">
+                          <h5 class="mt-0"><a th:text="${comment.name}" th:href="${comment.website}">Commenter Name</a></h5>
+                          <p th:text="${comment.content}">comment content</p>
+                        </div>
+                      </div>
 
                     <hr>
                 </div>
@@ -55,6 +37,15 @@
 
     </main>
     <footer th:replace="/fragments/footer"></footer>
+    <script th:src="@{/js/md5.js}"></script>
+    <script>
+    $(function(){
+
+        $("img.c_avatar").each(function(){
+            $(this).attr("src","https://www.gravatar.com/avatar/" + md5($(this).attr("email")) + "?s=50&d=identicon");
+        });
+    });
+    </script>
 </body>
 
 </html>
