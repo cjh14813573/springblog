@@ -31,7 +31,7 @@
     <img class="d-flex mr-3 rounded-circle c_avatar" src="https://picsum.photos/50/50" alt="" th:attr="email = ${comment.email}">
     <div class="media-body">
         <h5 class="mt-0 mr-2 d-inline-block"><a th:text="${comment.name}" th:href="${comment.website}?${comment.website}:'#'">Commenter Name</a></h5>
-        <p class="font-weight-lighter font-italic d-inline-block" th:text="${#dates.format(comment.createdTime, 'HH:mm  yyyy-MM-dd')}"> post time</p>
+        <p class="font-weight-lighter font-italic d-inline-block" th:text="${#dates.format(comment.createdTime, 'HH:mm MM-dd-yyyy')}"> post time</p>
         <p th:text="${comment.content}">comment content</p>
     </div>
 </div>
