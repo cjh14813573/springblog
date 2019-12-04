@@ -12,6 +12,7 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-8 col-md-8">
+                    <p class="d-none" th:text="${blog.id}" id="blog_id"></p>
                     <h1 class="mt-4" th:text="${blog.title}">Title</h1>
                     <hr>
                     <p th:text="'Posted on ' + ${#dates.format(blog.createdTime, 'yyyy-MM-dd HH:mm')}"> post time</p>
@@ -20,38 +21,45 @@
                     <hr>
                     <div th:utext="${blog.content}">blog content</div>
                     <hr>
-                    <div class="c-comment-form">
-                        <div class="card my-4">
-                            <h5 class="card-header">Leave a Comment:</h5>
-                            <div class="card-body">
-                              <form method="POST" th:action="@{/comment/add}" th:object="${commentForm}">
-                                <div class="form-group">
-                                    <input class="form-control mb-2" type="text" placeholder="name*" th:field="*{name}">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <input class="form-control mb-2" type="email" placeholder="email*" th:field="*{email}">
+                    <div id="comment_section">
+                        <!--
+                        <div class="c-comment-form">
+                            <div class="card my-4">
+                                <h5 class="card-header">Leave a Comment:</h5>
+                                <div class="card-body">
+                                    <form method="POST" th:action="@{/comment/add}" th:object="${commentForm}" id="comment_form">
+                                    <input type="hidden" th:field="*{blogId}">
+                                    <div class="form-group">
+                                        <input class="form-control mb-2" type="text" placeholder="name*" th:field="*{name}">
+                                        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <input class="form-control mb-2" type="text" placeholder="website" th:field="*{website}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input class="form-control mb-2" type="email" placeholder="email*" th:field="*{email}">
+                                            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input class="form-control mb-2" type="text" placeholder="website" th:field="*{website}">
+                                        </div>
                                     </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="3" th:field="*{content}" placeholder="content*"></textarea>
+                                        <span class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="comment_post_btn">Submit</button>
+                                    </form>
                                 </div>
-                                <div class="form-group">
-                                  <textarea class="form-control" rows="3" th:field="*{content}" placeholder="content*"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                              </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="media mb-4" th:each="comment:${blog.commentList}">
-                        <img class="d-flex mr-3 rounded-circle c_avatar" src="https://picsum.photos/50/50" alt="" th:attr="email = ${comment.email}">
-                        <div class="media-body">
-                          <h5 class="mt-0"><a th:text="${comment.name}" th:href="${comment.website}?${comment.website}:'#'">Commenter Name</a></h5>
-                          <p th:text="${comment.content}">comment content</p>
+                        <div class="media mb-4" th:each="comment:${blog.commentList}" th:id="'comment_'+${comment.id}">
+                            <img class="d-flex mr-3 rounded-circle c_avatar" src="https://picsum.photos/50/50" alt="" th:attr="email = ${comment.email}">
+                            <div class="media-body">
+                                <h5 class="mt-0"><a th:text="${comment.name}" th:href="${comment.website}?${comment.website}:'#'">Commenter Name</a></h5>
+                                <p th:text="${comment.content}">comment content</p>
+                            </div>
                         </div>
+                    -->
                     </div>
-
                     <hr>
                 </div>
                 <div th:replace="/fragments/widgets"></div>
@@ -62,14 +70,7 @@
     </main>
     <footer th:replace="/fragments/footer"></footer>
     <script th:src="@{/js/md5.js}"></script>
-    <script>
-        $(function () {
-
-            $("img.c_avatar").each(function () {
-                $(this).attr("src", "https://www.gravatar.com/avatar/" + md5($(this).attr("email")) + "?s=50&d=identicon");
-            });
-        });
-    </script>
+    <script th:src="@{/js/load_comment_section.js}"></script>
 </body>
 
 </html>
