@@ -3,6 +3,7 @@
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
             <form method="POST" th:action="@{/comment/add}" th:object="${commentForm}" id="comment_form">
+                
                 <input type="hidden" th:field="*{blogId}">
                 <div class="form-group">
                     <input class="form-control mb-2" type="text" placeholder="name*" th:field="*{name}">
@@ -29,7 +30,8 @@
 <div class="media mb-4" th:each="comment:${comments}" th:id="'comment_'+${comment.id}">
     <img class="d-flex mr-3 rounded-circle c_avatar" src="https://picsum.photos/50/50" alt="" th:attr="email = ${comment.email}">
     <div class="media-body">
-        <h5 class="mt-0"><a th:text="${comment.name}" th:href="${comment.website}?${comment.website}:'#'">Commenter Name</a></h5>
+        <h5 class="mt-0 mr-2 d-inline-block"><a th:text="${comment.name}" th:href="${comment.website}?${comment.website}:'#'">Commenter Name</a></h5>
+        <p class="font-weight-lighter font-italic d-inline-block" th:text="${#dates.format(comment.createdTime, 'HH:mm  yyyy-MM-dd')}"> post time</p>
         <p th:text="${comment.content}">comment content</p>
     </div>
 </div>

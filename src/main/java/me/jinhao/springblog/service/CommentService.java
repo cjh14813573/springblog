@@ -1,8 +1,10 @@
 package me.jinhao.springblog.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import me.jinhao.springblog.exception.BlogNotFoundException;
@@ -34,6 +36,12 @@ public class CommentService {
             comment.setContent(commentForm.getContent());
             commentRepository.save(comment);
         }
+
+    }
+
+    public List<Comment> findCommentsByBlogIdOrderByCreatedTimeDesc(Integer blogId){
+
+        return commentRepository.findByBlogIdOrderByCreatedTimeDesc(blogId);
 
     }
 

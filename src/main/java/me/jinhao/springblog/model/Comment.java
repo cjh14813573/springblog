@@ -1,5 +1,7 @@
 package me.jinhao.springblog.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
@@ -31,5 +35,9 @@ public class Comment {
 
     @Column(nullable = false)
     private String content;
+
+    @CreationTimestamp
+    @Column(updatable = false, nullable = false)
+    private Date createdTime;
     
 }

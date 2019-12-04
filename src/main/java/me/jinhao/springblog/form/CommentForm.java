@@ -29,6 +29,10 @@ public class CommentForm {
 
     }
 
+    public CommentForm(Integer blogId){
+        this.blogId = blogId;
+    }
+
     public CommentForm(Comment comment){
         this.blogId = comment.getBlog().getId();
         this.name = comment.getName();

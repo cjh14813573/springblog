@@ -32,15 +32,17 @@ public class CommentController {
     @Autowired
     private BlogService blogService;
 
-    private void load_section(Integer blogId, CommentForm commentForm, Model model) throws BlogNotFoundException{
-        Blog blog = blogService.findBlogById(blogId);
-        List<Comment> comments = blog.getCommentList();
+    private void load_section(Integer blogId, CommentForm commentForm, Model model){
+        //Blog blog = blogService.findBlogById(blogId);
+        //List<Comment> comments = blog.getCommentList();
+        List<Comment> comments = commentService.findCommentsByBlogIdOrderByCreatedTimeDesc(blogId);
         model.addAttribute("comments", comments);
+        model.addAttribute("commentForm", commentForm);
     }
 
     @GetMapping("/load/{blogId}")
-    public String load(@PathVariable Integer blogId, CommentForm commentForm, Model model){
-        load_section(blogId, commentForm, model);
+    public String load(@PathVariable Integer blogId, Model model){
+        load_section(blogId, new CommentForm(blogId), model);
         return "/comment_section";
     }
 
@@ -51,10 +53,12 @@ public class CommentController {
 
         if(!bindingResult.hasErrors()){
             commentService.addCommentByForm(commentForm);
+            load_section(blogId, new CommentForm(blogId), model);
+        }else{
+            load_section(blogId, commentForm, model);
         }
 
 
-        load_section(blogId, commentForm, model);
         return "/comment_section";
     }
 }
