@@ -3,6 +3,8 @@ package me.jinhao.springblog.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,9 +30,23 @@ public class common {
 
     @ModelAttribute
     public void widgetsData(Model model) {
+
+        //avatar widget
+        String wAvatarImgSrc = "";
+        String avatarFilePath = System.getProperty("user.home") + "/springblog/media/image/avatar/avatar.jpg";
+        Resource avatarResource = new FileSystemResource(avatarFilePath);
+        if(avatarResource.exists()){
+            wAvatarImgSrc = "/media/image/avatar/avatar.jpg";
+        }else{
+            wAvatarImgSrc = "https://picsum.photos/180/180";
+        }
+        model.addAttribute("wAvatarImgSrc", wAvatarImgSrc);
+
+        //catagories widget
         List<Category> wCategories = categoryService.findAllCategories();
         model.addAttribute("wCategories", wCategories);
 
+        //tags widget
         List<Tag> wTags = tagService.findAllTags();
         model.addAttribute("wTags", wTags);
     }
