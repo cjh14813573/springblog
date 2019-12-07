@@ -49,5 +49,13 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    public List<Comment> findAllCommentsByOrderByCreatedTimeDesc(){
+        return commentRepository.findAllByOrderByCreatedTimeDesc();
+    }
+
+	public void deleteCommentById(Integer id) {
+        commentRepository.deleteById(id);
+	}
+
     
 }
