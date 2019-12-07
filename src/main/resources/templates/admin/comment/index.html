@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head"></head>
+
+<body>
+    <nav th:replace="/fragments/nav"></nav>
+
+    <main role="main">
+
+
+        <div class="container mt-4">
+            <h1 class="display-2">Comments</h1>
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+            <div th:if="${!comments.empty}">
+                <table class="table sorting" id="pages">
+                    <tr class="home">
+                        <th>Name</th>
+                        <th>Blog</th>
+                        <th>Content</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:each="comment: ${comments}" th:id="'id_' + ${comment.id}">
+                        <td th:text="${comment.name}"></td>
+                        <td th:text="${comment.blog.title}"></td>
+                        <td th:text="${comment.content}"></td>
+                        <td><a th:href="@{'/admin/comment/delete/'+${comment.id}}" class="confirmDeletion">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div th:unless=${!comments.empty}>
+                <h4 class="display-4">There is no comment at this moment</h4>
+            </div>
+        </div>
+
+    </main>
+    <footer th:replace="/fragments/footer"></footer>
+</body>
+
+</html>
