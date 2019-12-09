@@ -1,23 +1,24 @@
 package me.jinhao.springblog.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import me.jinhao.springblog.model.Category;
-import me.jinhao.springblog.model.Page;
 import me.jinhao.springblog.model.Tag;
 import me.jinhao.springblog.service.CategoryService;
-import me.jinhao.springblog.service.PageService;
 import me.jinhao.springblog.service.TagService;
 
-@ControllerAdvice
-public class Common {
+@RestController
+@RequestMapping("/api/widget")
+public class WidgetController {
 
     @Autowired
     private CategoryService categoryService;
@@ -25,35 +26,30 @@ public class Common {
     @Autowired
     private TagService tagService;
 
-    @Autowired
-    private PageService pageService;
+    @GetMapping("")
+    public Map<String, Object> widgetData() {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
 
-    @ModelAttribute
-    public void widgetsData(Model model) {
-
-        //avatar widget
+        // avatar widget
         String wAvatarImgSrc = "";
         String avatarFilePath = System.getProperty("user.home") + "/springblog/media/image/avatar/avatar.jpg";
         Resource avatarResource = new FileSystemResource(avatarFilePath);
-        if(avatarResource.exists()){
+        if (avatarResource.exists()) {
             wAvatarImgSrc = "/media/image/avatar/avatar.jpg";
-        }else{
+        } else {
             wAvatarImgSrc = "https://picsum.photos/180/180";
         }
-        model.addAttribute("wAvatarImgSrc", wAvatarImgSrc);
+        resultMap.put("wAvatarImgSrc", wAvatarImgSrc);
 
-        //catagories widget
+        // catagories widget
         List<Category> wCategories = categoryService.findAllCategories();
-        model.addAttribute("wCategories", wCategories);
+        resultMap.put("wCategories", wCategories);
 
-        //tags widget
+        // tags widget
         List<Tag> wTags = tagService.findAllTags();
-        model.addAttribute("wTags", wTags);
+        resultMap.put("wTags", wTags);
+
+        return resultMap;
     }
 
-    @ModelAttribute
-    public void navData(Model model) {
-        List<Page> nPages = pageService.findAllPages();
-        model.addAttribute("nPages", nPages);
-    }
 }
