@@ -20,15 +20,15 @@ export class CategoryMainComponent implements OnInit {
   ) {
     this.route.paramMap.subscribe(params => {
       this.categoryId = +params.get('categoryId');
+      this.categoryService.getCategoryById(this.categoryId).subscribe((data: CommonResponse) => {
+        if (data.status === 1) {
+          this.category = data.responseBody;
+        }
+      });
     });
   }
 
   ngOnInit() {
-    this.categoryService.getCategoryById(this.categoryId).subscribe((data: CommonResponse) => {
-      if (data.status === 1) {
-        this.category = data.responseBody;
-      }
-    });
   }
 
 }
