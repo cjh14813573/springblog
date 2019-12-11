@@ -16,10 +16,10 @@ export class PageService {
   }
 
   getNavData() {
-    return this.http.get('http://' + this.location.host + 'api/nav');
+    return this.http.get('http://' + this.location.host + '/api/nav');
   }
 
   getPage(id) {
-    return this.http.get('http://' + this.location.host + 'api/page/' + id);
+    return this.http.get('http://' + this.location.host + '/api/page/' + id);
   }
 }
