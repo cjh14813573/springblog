@@ -26,6 +26,7 @@ public class NavController {
 
         List<Page> nPages = pageService.findAllPages()
                                         .stream()
+                                        .filter(page->page.getIsActive())
                                         .map(page->pageNavDto(page))
                                         .collect(Collectors.toList());
         resultMap.put("nPages", nPages);

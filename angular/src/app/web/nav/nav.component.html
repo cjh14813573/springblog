@@ -8,7 +8,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active" *ngFor="let page of navData?.nPages">
-                    <a class="nav-link" *ngIf="page.isActive" href="#" [href]="page.isLink ? page.link : '/page/' + page.id">{{ page.title }}</a>
+                    <a class="nav-link" *ngIf="page.isLink else router" [href]="page.link">{{ page.title }}</a>
+                    <ng-template #router>
+                      <a class="nav-link" [routerLink]="'/page/' + page.id">{{ page.title }}</a></ng-template>
                 </li>
             </ul>
         </div>
