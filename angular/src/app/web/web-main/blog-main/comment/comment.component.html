@@ -1,0 +1,37 @@
+<div class="c-comment-form">
+  <div class="card my-4">
+      <h5 class="card-header">Leave a Comment:</h5>
+      <div class="card-body">
+          <form [formGroup]="commentPostFormGroup" (ngSubmit)="onSubmit()">
+
+              <div class="form-group">
+                  <input class="form-control mb-2" type="text" placeholder="name(required)" formControlName="name" required>
+                  <span class="text-danger" *ngIf="errors?.name">{{ errors?.name }}</span>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <input class="form-control mb-2" type="email" placeholder="email(required)" formControlName="email" required>
+                      <span class="text-danger" *ngIf="errors?.email">{{ errors?.email }}</span>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <input class="form-control mb-2" type="text" placeholder="website" formControlName="website">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <textarea class="form-control" rows="3" formControlName="content" placeholder="content(required)" required></textarea>
+                  <span class="text-danger" *ngIf="errors?.content">{{ errors?.content }}</span>
+              </div>
+              <button type="submit" class="btn btn-primary" id="comment_post_btn" [disabled]="!commentPostFormGroup.valid">Submit</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+<div class="media mb-4" *ngFor="let comment of comments" [id]="'comment_'+comment?.id">
+  <img class="d-flex mr-3 rounded-circle c_avatar" *ngIf="comment.avatar" [src]="comment?.avatar" alt="">
+  <div class="media-body">
+      <h5 class="mt-0 mr-2 d-inline-block"><a [href]="comment.website ? comment.website : '#'">{{ comment.name }}</a></h5>
+      <p class="font-weight-lighter font-italic d-inline-block">{{ comment?.createdTime | date: 'HH:mm MM-dd-yyyy' }}</p>
+      <p>{{ comment?.content }}</p>
+  </div>
+</div>

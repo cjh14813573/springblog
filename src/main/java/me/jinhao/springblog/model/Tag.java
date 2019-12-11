@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Entity
@@ -25,6 +27,7 @@ public class Tag {
     @Column(nullable = false)
     private String slug;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "tagList")
     private List<Blog> blogList;
     

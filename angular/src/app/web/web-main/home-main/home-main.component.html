@@ -1,0 +1,15 @@
+<h1 class="my-3">Test Site</h1>
+<div *ngFor="let blog of blogs">
+  <div class="card my-4">
+    <img src="https://picsum.photos/500/160" class="card-img-top" alt="">
+    <div class="card-body">
+      <h4 class="card-title" >{{ blog?.title }}</h4>
+      <p class="card-text">{{ blog?.brief }}</p>
+      <a [routerLink]="'blog/' + blog?.id" class="btn btn-primary">Read More</a>
+    </div>
+    <div class="card-footer">
+      <span class="mr-3">Posted on {{blog?.createdTime | date:"HH:mm yyyy-MM-dd"}}</span>
+      <button type="button" class="btn btn-sm btn-outline-primary mr-2" *ngFor="let tag of blog?.tagList">{{ tag?.name }}</button>
+    </div>
+  </div>
+</div>

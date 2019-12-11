@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
@@ -39,12 +42,15 @@ public class Blog {
     @Column(updatable = false, nullable = false)
     private Date createdTime;
 
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     private Category category;
 
+    @JsonManagedReference
     @ManyToMany
     private List<Tag> tagList;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> commentList;
     

@@ -1,0 +1,10 @@
+<p class="d-none" id="blog_id">{{ blog?.id }}</p>
+<h1 class="mt-4">{{ blog?.title }}</h1>
+<hr>
+<p>Posted on  {{ blog?.createdTime | date: 'HH:mm yyyy-MM-dd' }}</p>
+<hr>
+<img class="img-fluid rounded" src="https://picsum.photos/900/300" alt="">
+<hr>
+<div [innerHTML]="blog?.content"></div>
+<hr>
+<app-comment></app-comment>

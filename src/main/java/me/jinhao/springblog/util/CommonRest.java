@@ -8,13 +8,31 @@ public class CommonRest {
 
     private Integer status = 1;
 
-    private String errorCode = "";
+    private Integer errorCode = null;
 
     private String errorMsg = "";
 
     private Object responseBody;
 
     public CommonRest(Object response){
+        this.responseBody = response;
+    }
+
+    public CommonRest(Integer status, Object response){
+        this.status = status;
+        this.responseBody = response;
+    }
+
+    public CommonRest(Integer status, Integer errorCode, String errorMsg){
+        this.status = status;
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+
+    public CommonRest(Integer status, Integer errorCode, String errorMsg, Object response){
+        this.status = status;
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
         this.responseBody = response;
     }
     

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Entity
@@ -29,6 +31,7 @@ public class Category {
     @Column(nullable = false)
     private String slug;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "category",cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     private List<Blog> blogList;
     

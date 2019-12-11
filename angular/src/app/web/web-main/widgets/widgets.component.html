@@ -1,0 +1,47 @@
+<div class="card mb-4 c-mt-8">
+  <!-- /About -->
+  <div class="c-card-avatar-container">
+    <div class="c-card-avatar">
+      <img *ngIf="widgetsData" [src]="widgetsData.wAvatarImgSrc" alt="">
+    </div>
+  </div>
+  <div class="card-body">
+    Blog test site for Spring Blog created by Jinhao Cui.
+    <a href="https://github.com/cjh14813573/springblog">Check github for more.</a>
+  </div>
+</div>
+<div class="card my-4">
+  <!-- /Category -->
+  <div class="card-header">Categories</div>
+  <div class="body">
+    <div class="list-group">
+      <a href="#" *ngFor="let category of widgetsData?.wCategories" class="list-group-item list-group-item-action"
+        [routerLink]="'category/' + category.id">{{ category.name }}
+      </a>
+    </div>
+  </div>
+</div>
+<!-- tags widgets are currently disabled
+
+<div class="card my-4">
+  <div class="card-header">Tags</div>
+  <div class="card-body">
+    <button type="button" *ngFor="let tag of widgetsData?.wTags" class="btn btn-sm btn-outline-primary mb-2 mx-1"
+      [attr.href]="'tag/' + tag.id">
+      {{ tag.name }}
+    </button>
+  </div>
+</div>
+-->
+<div class="card my-4">
+  <!-- /search -->
+  <div class="card-header">Search</div>
+  <div class="card-body">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="button">Go!</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -22,6 +26,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    @JsonManagedReference
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     private Blog blog;
 
@@ -39,5 +45,8 @@ public class Comment {
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
     private Date createdTime;
+
+    @Transient
+    private String avatar;
     
 }
