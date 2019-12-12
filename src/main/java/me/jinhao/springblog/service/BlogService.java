@@ -1,10 +1,15 @@
 package me.jinhao.springblog.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import me.jinhao.springblog.exception.BlogNotFoundException;
@@ -123,4 +128,10 @@ public class BlogService {
             throw new BlogNotFoundException();
         }
     }
+
+	public Page<Blog> findAllBlogsByPage(Integer page) {
+        Pageable pageable = PageRequest.of(page,2,Sort.Direction.DESC,"createdTime");
+        Page<Blog> blogs= blogRepository.findAll(pageable);
+		return blogs;
+	}
 }

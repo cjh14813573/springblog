@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CommonResponse } from '../util/commonResponse';
+import { CommonResponse } from '../util/response/commonResponse';
 import { HttpClient } from '@angular/common/http';
 import { HttpLocation } from '../util/httpLocation';
 

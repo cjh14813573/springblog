@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommentService } from 'src/app/service/comment.service';
-import { CommonResponse } from 'src/app/util/commonResponse';
+import { CommonResponse } from 'src/app/util/response/commonResponse';
 
 
 @Component({

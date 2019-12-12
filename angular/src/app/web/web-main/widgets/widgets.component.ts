@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonResponse } from 'src/app/util/commonResponse';
+import { CommonResponse } from 'src/app/util/response/commonResponse';
 import { WidgetService } from 'src/app/service/widget.service';
 
 @Component({

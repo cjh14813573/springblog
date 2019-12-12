@@ -1,0 +1,19 @@
+<ul class="pagination" *ngIf="pageResponse">
+  <li class="page-item" [class.disabled]="pageResponse?.first">
+    <button class="page-link" (click)="goPrevious.emit()">Previous</button>
+  </li>
+  <li class="page-item" aria-current="page" *ngFor="let page of totalPages()"
+  [class.active]="pageResponse?.number === page">
+    <button *ngIf="pageResponse?.number !== page; else disabledPageButton" class="page-link" (click)="goPage.emit(page)">
+      {{ page + 1 }}
+    </button>
+    <ng-template #disabledPageButton>
+        <span class="page-link">
+            {{ page + 1 }}
+        </span>
+    </ng-template>
+  </li>
+  <li class="page-item" [class.disabled]="pageResponse?.last">
+    <button class="page-link" (click)="goNext.emit()">Next</button>
+  </li>
+</ul>

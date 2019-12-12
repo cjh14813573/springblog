@@ -17,7 +17,7 @@ Check the test site (running in docker) for demo online: [http://www.jinhao.me:8
 ##### platform:
  - [Docker](https://www.docker.com/) (as container & deploy tool)
 
-## development
+## Development
 This project is still under development and has no stable release.
 ### how to use
 Spring Blog is built with Maven. To install Maven, see the official site of [Apache Maven Project](https://maven.apache.org/install.html)
@@ -33,3 +33,27 @@ $ java -jar target/springblog-0.0.1-SNAPSHOT.jar
 ```
 Spring Blog uses MySQL as database, make sure you modified `src/main/resources/application.yml` before compiling.
 The default external resource path for spring blog is `User-Home-Directory/springblog/media`
+
+## Version history
+###### 0.3.1-SNAPSHOT
+ - add pagination feature
+###### 0.3.0-SNAPSHOT
+ - rewrite front end (user) with Angular
+###### 0.2.3-SNAPSHOT
+ - add comment feature
+ - fix bugs
+###### 0.2.2-SNAPSHOT
+ - embed CKEditor
+###### 0.2.1-SNAPSHOT
+ - add categores dash
+ - add pages dash
+###### 0.2.0-SNAPSHOT
+ - build dash for admin
+###### 0.1.3-SNAPSHOT
+ - add widgets feature
+ - add external link for pages
+###### 0.1.2-SNAPSHOT
+ - add blog/category features
+###### 0.1.1-SNAPSHOT
+ - start project
+ - build front end with thymeleaf & bootstrap

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/service/blog.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommonResponse } from 'src/app/util/commonResponse';
+import { CommonResponse } from 'src/app/util/response/commonResponse';
 
 @Component({
   selector: 'app-blog-main',

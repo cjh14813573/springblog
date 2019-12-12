@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import me.jinhao.springblog.form.CommentForm;
 import me.jinhao.springblog.model.Comment;
-import me.jinhao.springblog.service.BlogService;
 import me.jinhao.springblog.service.CommentService;
 
 @Controller
@@ -23,9 +22,6 @@ public class OldCommentController {
 
     @Autowired
     private CommentService commentService;
-
-    @Autowired
-    private BlogService blogService;
 
     private void load_section(Integer blogId, CommentForm commentForm, Model model){
         //Blog blog = blogService.findBlogById(blogId);

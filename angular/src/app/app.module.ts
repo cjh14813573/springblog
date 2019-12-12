@@ -16,6 +16,7 @@ import { AdminMainComponent } from './admin/admin-main/admin-main.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CommentComponent } from './web/web-main/blog-main/comment/comment.component';
 import { CategoryMainComponent } from './web/web-main/category-main/category-main.component';
+import { PaginationComponent } from './web/web-main/pagination/pagigation.component';
 
 
 
@@ -33,7 +34,8 @@ import { CategoryMainComponent } from './web/web-main/category-main/category-mai
     AdminMainComponent,
     NotFoundComponent,
     CommentComponent,
-    CategoryMainComponent
+    CategoryMainComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

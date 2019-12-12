@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonResponse } from '../util/commonResponse';
+import { CommonResponse } from '../util/response/commonResponse';
 import { HttpLocation } from '../util/httpLocation';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class BlogService {
     private http: HttpClient,
   ) {
     this.location = new HttpLocation();
-   }
+  }
 
   getAllBlogs() {
     return this.http.get('http://' + this.location.host + '/api/blog');
@@ -25,7 +25,15 @@ export class BlogService {
     return this.http.get('http://' + this.location.host + '/api/blog/' + blogId);
   }
 
-  getComments(blogId){
+  getComments(blogId) {
     return this.http.get('http://' + this.location.host + '/api/comment/blog/' + blogId);
+  }
+
+  getBlogsByPage(page) {
+    return this.http.get('http://' + this.location.host + '/api/blog/', {
+      params: {
+        page,
+      }
+    });
   }
 }

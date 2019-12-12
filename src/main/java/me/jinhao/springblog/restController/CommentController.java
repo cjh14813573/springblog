@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.jinhao.springblog.form.CommentForm;
-import me.jinhao.springblog.model.Blog;
 import me.jinhao.springblog.model.Comment;
-import me.jinhao.springblog.service.BlogService;
 import me.jinhao.springblog.service.CommentService;
 import me.jinhao.springblog.util.CommonRest;
 import me.jinhao.springblog.util.MD5Util;
@@ -35,8 +32,6 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @Autowired
-    private BlogService blogService;
 
     @GetMapping("/blog/{blogId}")
     private List<Comment> getComments(@PathVariable Integer blogId){

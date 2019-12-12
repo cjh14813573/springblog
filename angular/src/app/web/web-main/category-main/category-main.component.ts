@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonResponse } from 'src/app/util/commonResponse';
+import { CommonResponse } from 'src/app/util/response/commonResponse';
 import { CategoryService } from 'src/app/service/category.service';
 import { ActivatedRoute } from '@angular/router';
 

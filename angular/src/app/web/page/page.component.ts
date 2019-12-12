@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PageService } from 'src/app/service/page.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommonResponse } from 'src/app/util/commonResponse';
+import { CommonResponse } from 'src/app/util/response/commonResponse';
 
 @Component({
   selector: 'app-page',
