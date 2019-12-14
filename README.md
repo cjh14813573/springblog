@@ -1,6 +1,6 @@
  # Spring Blog
 Spring Blog is a lightweight blog system implemented with Spring Boot & Angular
-This project is built with Restful API
+This project is built with RESTful API
 ## Demo
 Check the test site (running in docker) for demo online: [http://www.jinhao.me:8080](http://www.jinhao.me:8080).
 
